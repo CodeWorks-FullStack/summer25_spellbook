@@ -8,7 +8,7 @@ export class Spell {
 
   get buttonHTMLTemplate() {
     return `
-    <button class="btn btn-pink w-100 mb-2" type="button">
+    <button onclick="app.dndSpellsController.getSpellDetails('${this.index}')" class="btn btn-pink w-100 mb-2" type="button">
       ${this.name}
     </button>
     `

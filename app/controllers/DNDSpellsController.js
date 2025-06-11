@@ -25,4 +25,14 @@ export class DNDSpellsController {
     const spellement = document.getElementById('dnd-spells-list')
     spellement.innerHTML = spellsContent
   }
+
+  async getSpellDetails(spellIndex) {
+    try {
+      console.log('getting spell details', spellIndex);
+      await dndSpellsService.getSpellDetails(spellIndex)
+    } catch (error) {
+      Pop.error(error, 'Could not get that spell', 'not enough mana')
+      console.error('getSpellDetails failed', error);
+    }
+  }
 }
