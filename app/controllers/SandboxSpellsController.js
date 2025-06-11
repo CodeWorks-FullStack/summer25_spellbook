@@ -27,6 +27,16 @@ export class SandboxSpellsController {
     }
   }
 
+  async toggleSpellPreparation(spellId) {
+    try {
+      console.log('toggling spell', spellId);
+      await sandboxSpellsService.updateSpell(spellId)
+    } catch (error) {
+      Pop.error(error, 'Could not update spell', 'uh oh!')
+      console.error('toggleSpellPreparation failed', error);
+    }
+  }
+
   drawSpells() {
     const spells = AppState.sandboxSpells
     let spellContent = ''

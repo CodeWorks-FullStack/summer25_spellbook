@@ -23,6 +23,17 @@ export class SandboxSpell extends Spell {
     this.prepared = data.prepared
     this.creatorId = data.creatorId
   }
+
+  get buttonHTMLTemplate() {
+    return `
+    <div class="d-flex gap-2 align-items-center">
+      <input onchange="app.sandboxSpellsController.toggleSpellPreparation('${this.id}')" type="checkbox" class="form-check-input">
+      <button onclick="app.dndSpellsController.getSpellDetails('${this.index}')" class="btn btn-purple w-100 mb-2" type="button">
+      ${this.name}
+      </button>
+    </div>
+    `
+  }
 }
 
 export class DetailedSpell {

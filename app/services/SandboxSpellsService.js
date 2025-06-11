@@ -3,6 +3,10 @@ import { SandboxSpell } from "../models/Spell.js";
 import { api } from "../utils/Axios.js"
 
 class SandboxSpellsService {
+  async updateSpell(spellId) {
+    const response = await api.put(`api/spells/${spellId}`, { prepared: true })
+    console.log('UPDATED SPELL', response.data);
+  }
   async getMySpells() {
     const response = await api.get('api/spells')
     console.log('GOT MY SPELLS', response.data);
