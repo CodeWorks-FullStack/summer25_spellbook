@@ -15,6 +15,16 @@ export class Spell {
   }
 }
 
+export class SandboxSpell extends Spell {
+  constructor(data) {
+    super(data)
+    this.id = data.id
+    this.school = data.school
+    this.prepared = data.prepared
+    this.creatorId = data.creatorId
+  }
+}
+
 export class DetailedSpell {
   constructor(data) {
     this.name = data.name
@@ -73,3 +83,6 @@ export class DetailedSpell {
   }
 
 }
+
+
+
