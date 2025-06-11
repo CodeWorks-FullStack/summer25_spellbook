@@ -7,6 +7,7 @@ export class SandboxSpellsController {
     console.log('Sandbox controller is ready ⌛');
     AppState.on('identity', this.getMySpells)
     AppState.on('sandboxSpells', this.drawSpells)
+    AppState.on('sandboxSpells', this.drawSpellCount)
   }
 
   async saveSpell() {
@@ -43,5 +44,13 @@ export class SandboxSpellsController {
     spells.forEach(spell => spellContent += spell.buttonHTMLTemplate)
     const spellement = document.getElementById('sandbox-spells-list')
     spellement.innerHTML = spellContent
+  }
+
+  drawSpellCount() {
+    const spells = AppState.sandboxSpells
+    // const preparedSpells = spells.filter(spell => spell.prepared == true)
+    const preparedSpells = spells.filter(spell => spell.prepared)
+    const spellement = document.getElementById('spell-count')
+    spellement.innerText = `Spells Prepared: ${preparedSpells.length}/${spells.length}`
   }
 }

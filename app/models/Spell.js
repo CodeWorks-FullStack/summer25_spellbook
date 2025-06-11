@@ -1,3 +1,4 @@
+import { AppState } from "../AppState.js"
 
 export class Spell {
   constructor(data) {
@@ -69,9 +70,7 @@ export class DetailedSpell {
           <p class="fs-1">${this.name}</p>
           <p class="fs-4">Level ${this.level}</p>
         </div>
-        <button onclick="app.sandboxSpellsController.saveSpell()" class="btn btn-outline-purple" type="button">
-          Save to my book +
-        </button>
+        ${this.saveButton}
       </div>
       <hr>
       <div class="d-flex justify-content-between">
@@ -90,6 +89,20 @@ export class DetailedSpell {
       <div>${this.components.join(', ')}</div>
       <div>${this.material}</div>
     </div>
+    `
+  }
+
+  get saveButton() {
+    const identity = AppState.identity
+
+    if (identity == null) {
+      return ''
+    }
+
+    return `
+     <button onclick="app.sandboxSpellsController.saveSpell()" class="btn btn-outline-purple" type="button">
+      Save to my book +
+    </button>
     `
   }
 
