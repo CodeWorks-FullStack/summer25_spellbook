@@ -26,7 +26,7 @@ export class DetailedSpell {
     this.description = data.desc
     this.range = data.range
     this.components = data.components
-    this.material = data.material
+    this.material = data.material || 'no material'
     this.isRitual = data.ritual
     this.duration = data.duration
     this.requiresConcentration = data.concentration
@@ -42,7 +42,7 @@ export class DetailedSpell {
 
   get detailedHTMLTemplate() {
     return `
-    <div class="rounded shadow p-3">
+    <div class="rounded shadow bg-light p-3">
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex gap-3">
           <p class="fs-1">${this.name}</p>
@@ -62,10 +62,12 @@ export class DetailedSpell {
           ${this.isRitual ? 'ritual' : ''} 
         </div>
       </div>
-      <p>${this.description.join('<br>')}</p>
+      <div class="spell-description">
+        <p>${this.description.join('<br><br>')}</p>
+      </div>
       <hr>
       <div>${this.components.join(', ')}</div>
-      <div>Bat poop</div>
+      <div>${this.material}</div>
     </div>
     `
   }

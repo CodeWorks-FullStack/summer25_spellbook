@@ -7,6 +7,9 @@ body {
 
 main {
   flex-grow: 1;
+  background-image: url(https://images.unsplash.com/photo-1572978140070-1eed985bc8c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 #pop-toast-container {
@@ -14,4 +17,9 @@ main {
   flex-direction: column;
   justify-content: start;
   align-items: end;
+}
+
+.spell-description {
+  max-height: 40dvh;
+  overflow-y: auto;
 }
