@@ -2,6 +2,11 @@ import { AppState } from "../AppState.js";
 import { api } from "../utils/Axios.js"
 
 class SandboxSpellsService {
+  async getMySpells() {
+    const response = await api.get('api/spells')
+    console.log('GOT MY SPELLS', response.data);
+
+  }
   async createSpell() {
     const response = await api.post('api/spells', AppState.detailedSpell)
     console.log('CREATED SPELL', response.data);
