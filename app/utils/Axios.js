@@ -3,10 +3,17 @@ import { logger } from '../utils/Logger.js';
 
 // @ts-ignore
 // eslint-disable-next-line no-undef
+// NOTE always use this instance of axios for the codeworks sandbox API
 export const api = axios.create({
   baseURL: baseURL,
   timeout: 8000,
   withCredentials: true
+})
+
+// @ts-ignore
+export const dndApi = axios.create({
+  baseURL: 'https://www.dnd5eapi.co/api/2014/',
+  timeout: 3000
 })
 
 api.interceptors.request.use(config => config, handleAxiosError)
