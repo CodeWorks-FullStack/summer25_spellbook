@@ -6,6 +6,7 @@ export class SandboxSpellsController {
   constructor() {
     console.log('Sandbox controller is ready ⌛');
     AppState.on('identity', this.getMySpells)
+    AppState.on('sandboxSpells', this.drawSpells)
   }
 
   async saveSpell() {
@@ -24,5 +25,13 @@ export class SandboxSpellsController {
       Pop.error(error, 'Could not get saved spells', 'uh oh!')
       console.error('getMySpells failed', error);
     }
+  }
+
+  drawSpells() {
+    const spells = AppState.sandboxSpells
+    let spellContent = ''
+    spells.forEach(spell => spellContent += spell.buttonHTMLTemplate)
+    const spellement = document.getElementById('sandbox-spells-list')
+    spellement.innerHTML = spellContent
   }
 }
