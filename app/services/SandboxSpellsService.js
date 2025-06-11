@@ -12,6 +12,8 @@ class SandboxSpellsService {
   async createSpell() {
     const response = await api.post('api/spells', AppState.detailedSpell)
     console.log('CREATED SPELL', response.data);
+    const spell = new SandboxSpell(response.data)
+    AppState.sandboxSpells.push(spell)
   }
 }
 
