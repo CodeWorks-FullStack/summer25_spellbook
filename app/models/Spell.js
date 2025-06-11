@@ -16,15 +16,23 @@ export class Spell {
   }
 }
 
+// NOTE inheritance!
+// SandBoxSpell inherits all members (properties, getters, methods) from the Spell class
+// SandboxSpell will have nad index, name and level all brought in through the parent class here
+// NOTE a SandboxSpell object is now both a Spell AND a SandboxSpell (polymorphism)
 export class SandboxSpell extends Spell {
   constructor(data) {
-    super(data)
+    super(data) // NOTE calls the constructor on Spell class
+
+    // NOTE we can add additional properties here and build upon the parent class
     this.id = data.id
     this.school = data.school
     this.prepared = data.prepared
     this.creatorId = data.creatorId
   }
 
+  // NOTE override's the inherited buttonHTMLTemplate.
+  // NOTE overrides are a feature of polymorphism
   get buttonHTMLTemplate() {
     return `
     <div class="d-flex gap-2 align-items-center">
@@ -44,7 +52,6 @@ export class DetailedSpell {
     this.level = data.level
     this.higherLevel = data.higher_level
     this.school = data.school.name
-    // TODO make this not suck
     this.description = data.desc
     this.range = data.range
     this.components = data.components
@@ -59,6 +66,7 @@ export class DetailedSpell {
     this.difficultySuccess = data.dc?.dc_success
     this.classes = data.classes.map(classObj => classObj.name)
     this.damageType = data.damage?.damage_type.name || 'no damage'
+    // NOTE this data is stinky
     this.damage = data.damage?.damage_at_slot_level ? data.damage.damage_at_slot_level[this.level] : ''
   }
 

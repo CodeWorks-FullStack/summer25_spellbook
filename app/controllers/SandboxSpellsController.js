@@ -5,7 +5,7 @@ import { Pop } from "../utils/Pop.js";
 export class SandboxSpellsController {
   constructor() {
     console.log('Sandbox controller is ready ⌛');
-    AppState.on('identity', this.getMySpells)
+    AppState.on('identity', this.getMySpells) // NOTE make sure you get my spells *after* I log in
     AppState.on('sandboxSpells', this.drawSpells)
     AppState.on('sandboxSpells', this.drawSpellCount)
   }
@@ -48,6 +48,7 @@ export class SandboxSpellsController {
 
   drawSpellCount() {
     const spells = AppState.sandboxSpells
+    // [ 1, 2, 3, 4, 5 ].filter(num => num > 3) => [ 4, 5 ]
     // const preparedSpells = spells.filter(spell => spell.prepared == true)
     const preparedSpells = spells.filter(spell => spell.prepared)
     const spellement = document.getElementById('spell-count')
