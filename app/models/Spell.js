@@ -48,7 +48,7 @@ export class DetailedSpell {
           <p class="fs-1">${this.name}</p>
           <p class="fs-4">Level ${this.level}</p>
         </div>
-        <button class="btn btn-outline-purple">
+        <button onclick="app.sandboxSpellsController.saveSpell()" class="btn btn-outline-purple" type="button">
           Save to my book +
         </button>
       </div>
