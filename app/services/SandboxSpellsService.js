@@ -4,8 +4,14 @@ import { api } from "../utils/Axios.js"
 
 class SandboxSpellsService {
   async updateSpell(spellId) {
-    const response = await api.put(`api/spells/${spellId}`, { prepared: true })
+    const spells = AppState.sandboxSpells
+    const spellIndex = spells.findIndex(spell => spell.id == spellId)
+    const spellToUpdate = spells[spellIndex]
+    const spellData = { prepared: !spellToUpdate.prepared }
+    const response = await api.put(`api/spells/${spellId}`, spellData)
     console.log('UPDATED SPELL', response.data);
+    const updatedSpell = new SandboxSpell(response.data)
+    spells.splice(spellIndex, 1, updatedSpell)
   }
   async getMySpells() {
     const response = await api.get('api/spells')
