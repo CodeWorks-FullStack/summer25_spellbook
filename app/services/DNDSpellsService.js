@@ -1,11 +1,13 @@
 import { AppState } from "../AppState.js";
-import { Spell } from "../models/Spell.js";
+import { DetailedSpell, Spell } from "../models/Spell.js";
 import { dndApi } from "../utils/Axios.js"
 
 class DNDSpellsService {
   async getSpellDetails(spellIndex) {
     const response = await dndApi.get(`spells/${spellIndex}`)
     console.log('GOT SPELL DETAILS 📔🪄', response.data);
+    const spell = new DetailedSpell(response.data)
+    AppState.detailedSpell = spell
   }
 
   async getSpells() {

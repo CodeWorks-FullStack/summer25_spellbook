@@ -6,6 +6,7 @@ export class DNDSpellsController {
   constructor() {
     console.log('DND Spells controller is ready! 📔🪄');
     AppState.on('dndSpells', this.drawSpells)
+    AppState.on('detailedSpell', this.drawDetailedSpell)
     this.getSpells()
   }
 
@@ -18,14 +19,6 @@ export class DNDSpellsController {
     }
   }
 
-  drawSpells() {
-    const spells = AppState.dndSpells
-    let spellsContent = ''
-    spells.forEach(spell => spellsContent += spell.buttonHTMLTemplate)
-    const spellement = document.getElementById('dnd-spells-list')
-    spellement.innerHTML = spellsContent
-  }
-
   async getSpellDetails(spellIndex) {
     try {
       console.log('getting spell details', spellIndex);
@@ -34,5 +27,19 @@ export class DNDSpellsController {
       Pop.error(error, 'Could not get that spell', 'not enough mana')
       console.error('getSpellDetails failed', error);
     }
+  }
+
+  drawSpells() {
+    const spells = AppState.dndSpells
+    let spellsContent = ''
+    spells.forEach(spell => spellsContent += spell.buttonHTMLTemplate)
+    const spellement = document.getElementById('dnd-spells-list')
+    spellement.innerHTML = spellsContent
+  }
+
+  drawDetailedSpell() {
+    const spell = AppState.detailedSpell
+    const detailedSpellement = document.getElementById('detailed-spell')
+    detailedSpellement.innerHTML = spell.detailedHTMLTemplate
   }
 }

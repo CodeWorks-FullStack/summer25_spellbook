@@ -31,8 +31,43 @@ export class DetailedSpell {
     this.duration = data.duration
     this.requiresConcentration = data.concentration
     this.castingTime = data.casting_time
-    this.difficultyClass = data.dc.dc_type.name
-    this.difficultySuccess = data.dc.dc_success
+    // NOTE ? elvis operator
+    // NOTE stop drilling into an object if the left hand side property is null or undefined
+    this.difficultyClass = data.dc?.dc_type.name
+    this.difficultySuccess = data.dc?.dc_success
     this.classes = data.classes.map(classObj => classObj.name)
+    this.damageType = data.damage?.damage_type.name || 'no damage'
+    this.damage = data.damage?.damage_at_slot_level ? data.damage.damage_at_slot_level[this.level] : ''
   }
+
+  get detailedHTMLTemplate() {
+    return `
+    <div class="rounded shadow p-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-3">
+          <p class="fs-1">${this.name}</p>
+          <p class="fs-4">Level ${this.level}</p>
+        </div>
+        <button class="btn btn-outline-purple">
+          Save to my book +
+        </button>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <div class="fw-bold">
+          ${this.damageType} ${this.damage} ${this.range} ${this.castingTime} ${this.duration}
+        </div>
+        <div>
+          ${this.requiresConcentration ? 'concentration' : ''} 
+          ${this.isRitual ? 'ritual' : ''} 
+        </div>
+      </div>
+      <p>${this.description.join('<br>')}</p>
+      <hr>
+      <div>${this.components.join(', ')}</div>
+      <div>Bat poop</div>
+    </div>
+    `
+  }
+
 }
