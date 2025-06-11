@@ -6,8 +6,8 @@ class DNDSpellsService {
   async getSpellDetails(spellIndex) {
     const response = await dndApi.get(`spells/${spellIndex}`)
     console.log('GOT SPELL DETAILS 📔🪄', response.data);
-
   }
+
   async getSpells() {
     const response = await dndApi.get('spells')
     console.log('GOT SPELLS 🪄📔🪄🪄🪄📔📔', response.data);
