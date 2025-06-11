@@ -5,4 +5,12 @@ export class Spell {
     this.name = data.name
     this.level = data.level
   }
+
+  get buttonHTMLTemplate() {
+    return `
+    <button class="btn btn-pink w-100 mb-2" type="button">
+      Acid Reflux
+    </button>
+    `
+  }
 }
