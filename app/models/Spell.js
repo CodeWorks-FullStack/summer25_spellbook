@@ -9,7 +9,7 @@ export class Spell {
   get buttonHTMLTemplate() {
     return `
     <button class="btn btn-pink w-100 mb-2" type="button">
-      Acid Reflux
+      ${this.name}
     </button>
     `
   }
